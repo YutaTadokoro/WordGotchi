@@ -1,239 +1,212 @@
 # WordGotchi
 
-WordGotchiは、言葉を食べて成長する仮想ペットアプリケーションです。感情分析とAI生成アートを組み合わせた、インタラクティブな体験を提供します。
+WordGotchi is a virtual pet application that grows by consuming words. It provides an interactive experience combining emotion analysis and AI-generated art.
 
-## 機能
+## Features
 
-- 📝 **インタラクティブな言葉の餌やり**: 入力したテキストが個別の単語に分解され、クリックしてGotchiに食べさせることができます
-- � **感情分析**: Claude APIを使用して7つの基本感情（喜び、悲しみ、怒り、恐れ、驚き、嫌悪、信頼）を分析
-- 🎨 **感情ベースのアート生成**: Google Gemini Imagen APIを使用して、蓄積された感情から抽象アートを生成
-- � **詩の進生成**: 入力テキストと感情状態から詩を自動生成
-- � **2段階の進化システム**: 
-- ✨ **リッチなアニメーション**: 
-  - 単語が飛んでいくベジェ曲線の軌跡
-  - Gotchiの浮遊アニメーション
-  - 感情に応じたエモートアニメーション
-  - 進化時の特殊エフェクト
-- 🌈 **感情グロー効果**: 支配的な感情に応じてGotchiの周りに色付きのグローが表示されます
+- 📝 **Interactive Word Feeding**: Input text is decomposed into individual words that you can click to feed to your Gotchi
+- 🧠 **Emotion Analysis**: Analyzes seven basic emotions (joy, sadness, anger, fear, surprise, disgust, trust) using Claude API
+- 🎨 **Emotion-Based Art Generation**: Generates abstract art from accumulated emotions using Google Gemini Imagen API
+- 📜 **Poetry Generation**: Automatically generates poetry from input text and emotional state
+- 🌱 **Two-Stage Evolution System**: 
+- ✨ **Rich Animations**: 
+  - Bezier curve trajectories for flying words
+  - Gotchi floating animation
+  - Emotion-specific emote animations
+  - Special effects during evolution
+- 🌈 **Emotion Glow Effect**: A colored glow appears around the Gotchi corresponding to the dominant emotion
 
-## セットアップ
+## Setup
 
-### 1. 依存関係のインストール
+### 1. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 2. 環境変数の設定
+### 2. Configure Environment Variables
 
-`.env.example`を`.env`にコピーして、必要なAPIキーを設定してください：
+Copy `.env.example` to `.env` and configure the required API keys:
 
 ```bash
 cp .env.example .env
 ```
 
-#### Claude API設定
+#### Claude API Configuration
 
-感情分析にはClaude APIを使用します。以下のいずれかの方法で設定できます：
-
-プロキシサーバー経由で使用します：
+Uses Claude API for emotion analysis via proxy server:
 
 ```env
 VITE_CLAUDE_PROXY_TARGET=http://127.0.0.1:8000
 ```
 
-**プロキシサーバーの役割：**
-- Claude APIキーの管理
-- 認証ヘッダーの追加
-- APIエンドポイントの構築
+**Proxy Server Responsibilities:**
+- Claude API key management
+- Adding authentication headers
+- Building API endpoints
 
-**注意**: Claude APIキーはプロキシサーバー側で管理されます。フロントエンドには直接APIキーを含めないでください。
+**Note**: Claude API keys are managed on the proxy server side. Do not include API keys directly in the frontend.
 
-#### Gemini API設定
+#### Gemini API Configuration
 
-アート生成にはGoogle Gemini Imagen APIを使用します。プロキシサーバー経由で使用します：
+Uses Google Gemini Imagen API for art generation via proxy server:
 
 ```env
-VITE_GEMINI_PROXY_TARGET=http://127.0.0.1:8001
+VITE_GEMINI_PROXY_TARGET=http://127.0.0.1:8000
 ```
 
-**プロキシサーバーの役割：**
-- Gemini APIキーの管理
-- Google Cloud Project IDの管理
-- 認証ヘッダーの追加
-- APIエンドポイントの構築
 
-**プロキシサーバーの実装例：**
-
-プロキシサーバーは以下のエンドポイントを提供する必要があります：
-- `POST /generate` - 画像生成リクエストを受け取り、Gemini Imagen APIに転送
-
-プロキシサーバー側で以下を設定してください：
-1. Gemini APIキー
-2. Google Cloud Project ID
-3. リクエストを `https://us-central1-aiplatform.googleapis.com/v1/projects/{PROJECT_ID}/locations/us-central1/publishers/google/models/imagen-3.0-generate-001:predict` に転送
-
-詳細な実装例は `proxy-server-example.md` を参照してください。
-
-### 3. 開発サーバーの起動
+### 3. Start Development Server
 
 ```bash
 npm run dev
 ```
 
-ブラウザで `http://localhost:5173` を開いてください。
+Open `http://localhost:5173` in your browser.
 
-### 4. ビルド
+### 4. Build
 
 ```bash
 npm run build
 ```
 
-## 使い方
+## Usage
 
-1. **テキスト入力**: テキストボックスに言葉を入力（最大500文字）
-2. **単語の散布**: 送信すると、入力テキストが個別の単語に分解され、キャンバスエリアに散らばります
-3. **餌やり**: 散らばった単語をクリックすると、Gotchiに向かって飛んでいきます
-4. **感情分析**: Gotchiが単語を食べると、感情が分析され、蓄積されます
-5. **エモート**: すべての単語を食べ終わると、感情に応じたエモートアニメーションが再生されます
-6. **進化**: 10回餌を与えると、特殊な進化アニメーションとともにGotchiがStage 2に進化します
-7. **表現生成**: Stage 2以降は、餌やりのたびに感情に基づいたアートと詩が自動生成されます
-8. **作品の保存**: 生成されたアートや詩はダウンロード・保存できます
+1. **Text Input**: Enter words in the text box (maximum 500 characters)
+2. **Word Scattering**: Upon submission, input text is decomposed into individual words and scattered across the canvas area
+3. **Feeding**: Click on scattered words to make them fly toward the Gotchi
+4. **Emotion Analysis**: When the Gotchi eats words, emotions are analyzed and accumulated
+5. **Emotes**: When all words are consumed, an emote animation plays based on the emotion
+6. **Evolution**: After 10 feedings, the Gotchi evolves to Stage 2 with a special evolution animation and Japanese-style background music
+7. **Expression Generation**: From Stage 2 onwards, emotion-based art and poetry are automatically generated with each feeding
+8. **Save Works**: Generated art and poetry can be downloaded and saved
 
-### 感情システム
+### Emotion System
 
-- **7つの基本感情**: 喜び、悲しみ、怒り、恐れ、驚き、嫌悪、信頼
-- **感情の蓄積**: 餌やりのたびに感情が蓄積されます
-- **感情の減衰**: 時間経過とともに感情が徐々に薄れます（1日あたり5%）
-- **グロー効果**: 支配的な感情に応じてGotchiの周りに色付きのグローが表示されます
+- **Seven Basic Emotions**: Joy, sadness, anger, fear, surprise, disgust, trust
+- **Emotion Accumulation**: Emotions accumulate with each feeding
+- **Emotion Decay**: Emotions gradually fade over time (5% per day)
+- **Glow Effect**: A colored glow appears around the Gotchi corresponding to the dominant emotion
 
-### データ管理
+### Data Management
 
-- **自動保存**: すべての状態変更が自動的にローカルストレージに保存されます
-- **エクスポート**: GotchiのデータをJSON形式でエクスポートできます
-- **インポート**: 他のブラウザやデバイスからデータをインポートできます
-- **容量管理**: ストレージが5MBを超えると、古いデータが自動的に削除されます
+- **Auto-Save**: All state changes are automatically saved to localStorage
+- **Export**: Export Gotchi data in JSON format
+- **Import**: Import data from other browsers or devices
+- **Capacity Management**: When storage exceeds 5MB, old data is automatically deleted
 
-## 技術スタック
+## Tech Stack
 
-- **フロントエンド**: React 19 + TypeScript + Vite
-- **スタイリング**: CSS
-- **アニメーション**: 
-  - Framer Motion (UIアニメーション)
-  - Konva + React Konva (キャンバスアニメーション)
-- **AI API**: 
-  - Claude API (感情分析・詩生成)
-  - Google Gemini Imagen API (画像生成)
-- **ストレージ**: LocalStorage
-- **テスト**: 
-  - Vitest (ユニットテスト・統合テスト)
-  - fast-check (プロパティベーステスト)
-  - Testing Library (コンポーネントテスト)
+- **Frontend**: React 19 + TypeScript + Vite
+- **Styling**: CSS
+- **Animation**: 
+  - Framer Motion (UI animations)
+  - Konva + React Konva (canvas animations)
+- **AI APIs**: 
+  - Claude API (emotion analysis, poetry generation)
+  - Google Gemini Imagen API (image generation)
+- **Storage**: LocalStorage
+- **Testing**: 
+  - Vitest (unit tests, integration tests)
+  - fast-check (property-based testing)
+  - Testing Library (component tests)
 
-## プロジェクト構造
+## Project Structure
 
 ```
 src/
-├── components/     # UIコンポーネント
-│   ├── Canvas.tsx              # メインキャンバスエリア
-│   ├── GotchiCharacter.tsx     # Gotchiキャラクター
-│   ├── Input.tsx               # テキスト入力コンポーネント
-│   ├── Popup.tsx               # アート・詩表示ポップアップ
-│   ├── EvolutionAnimation.tsx  # 進化アニメーション
-│   ├── GlowEffect.tsx          # 感情グローエフェクト
-│   ├── ScatteredWord.tsx       # 散らばる単語
+├── components/     # UI components
+│   ├── Canvas.tsx              # Main canvas area
+│   ├── GotchiCharacter.tsx     # Gotchi character
+│   ├── Input.tsx               # Text input component
+│   ├── Popup.tsx               # Art/poetry display popup
+│   ├── EvolutionAnimation.tsx  # Evolution animation
+│   ├── GlowEffect.tsx          # Emotion glow effect
+│   ├── ScatteredWord.tsx       # Scattered words
 │   └── ...
 ├── contexts/       # React Context
-│   └── GotchiContext.tsx       # グローバル状態管理
-├── services/       # APIクライアントとビジネスロジック
-│   ├── ClaudeAPIClient.ts      # Claude API統合
-│   ├── GeminiClient.ts         # Gemini Imagen API統合
-│   ├── ExpressionService.ts    # アート・詩生成サービス
-│   ├── StorageService.ts       # ローカルストレージ管理
-│   ├── AnimationController.ts  # アニメーション制御
-│   └── SoundService.ts         # サウンド管理
-├── types/          # TypeScript型定義
-│   └── index.ts                # 共通型定義
-├── utils/          # ユーティリティ関数
-└── integration/    # 統合テスト
+│   └── GotchiContext.tsx       # Global state management
+├── services/       # API clients and business logic
+│   ├── ClaudeAPIClient.ts      # Claude API integration
+│   ├── GeminiClient.ts         # Gemini Imagen API integration
+│   ├── ExpressionService.ts    # Art/poetry generation service
+│   ├── StorageService.ts       # localStorage management
+│   ├── AnimationController.ts  # Animation control
+│   └── SoundService.ts         # Sound management
+├── types/          # TypeScript type definitions
+│   └── index.ts                # Common type definitions
+├── utils/          # Utility functions
+└── integration/    # Integration tests
 ```
 
-## テスト
+## Testing
 
-### テストの実行
+### Running Tests
 
 ```bash
-# すべてのテストを実行
+# Run all tests
 npm test
 
-# ウォッチモードでテストを実行
+# Run tests in watch mode
 npm run test:watch
 
-# カバレッジレポートを生成
+# Generate coverage report
 npm run test -- --coverage
 ```
 
-### テスト戦略
+### Testing Strategy
 
-- **ユニットテスト**: 個別のコンポーネントとサービスの動作を検証
-- **プロパティベーステスト**: fast-checkを使用して、100回以上のランダム入力で普遍的な性質を検証
-- **統合テスト**: エンドツーエンドのワークフロー（餌やり、進化、データ永続化など）を検証
-- **コンポーネントテスト**: Testing Libraryを使用してUIコンポーネントの動作を検証
+- **Unit Tests**: Verify behavior of individual components and services
+- **Property-Based Tests**: Use fast-check to verify universal properties across 100+ random inputs
+- **Integration Tests**: Verify end-to-end workflows (feeding, evolution, data persistence, etc.)
+- **Component Tests**: Use Testing Library to verify UI component behavior
 
-### テストカバレッジ目標
+### Test Coverage Goals
 
-- ユニットテストカバレッジ: >80%
-- プロパティテスト: 27の正確性プロパティすべてが100回以上のイテレーションで合格
-- 統合テスト: すべての重要なワークフローが合格
+- Unit test coverage: >80%
+- Property tests: All 27 correctness properties passing with 100+ iterations
+- Integration tests: All critical workflows passing
 
-## 開発
+## Development
 
-### コードの品質
+### Code Quality
 
 ```bash
-# リントチェック
+# Lint check
 npm run lint
 
-# ビルドチェック
+# Build check
 npm run build
 ```
 
-### アーキテクチャ
+### Architecture
 
-WordGotchiは以下のレイヤーで構成されています：
+WordGotchi consists of the following layers:
 
-1. **プレゼンテーション層**: React コンポーネント（Canvas、Input、Popup）
-2. **状態管理層**: React Context によるグローバル状態管理
-3. **サービス層**: ビジネスロジックと外部API統合
-4. **ストレージ層**: LocalStorageによるデータ永続化
+1. **Presentation Layer**: React components (Canvas, Input, Popup)
+2. **State Management Layer**: Global state management via React Context
+3. **Service Layer**: Business logic and external API integration
+4. **Storage Layer**: Data persistence via LocalStorage
 
-詳細な設計については、`.kiro/specs/wordgotchi/design.md` を参照してください。
+See `.kiro/specs/wordgotchi/design.md` for detailed design documentation.
 
-## トラブルシューティング
+## Troubleshooting
 
-### APIエラー
+### API Errors
 
-- **Claude API**: ネットワークエラーの場合、最大3回まで指数バックオフで再試行されます
-- **Gemini Imagen API**: 生成エラーの場合、ユーザーに再試行オプションが表示されます（タイムアウト: 60秒）
+- **Claude API**: Network errors are retried up to 3 times with exponential backoff
+- **Gemini Imagen API**: Generation errors display a retry option to the user (timeout: 60 seconds)
 
-### プロキシサーバーの設定
 
-両方のAPIはプロキシサーバー経由で動作します。これにより：
-- APIキーをフロントエンドに露出させない
-- CORS問題を回避
-- 認証とリクエストの一元管理
+### Storage Errors
 
-プロキシサーバーの実装例については、`proxy-server-example.md` を参照してください。
+- **Quota Exceeded**: Automatically deletes 20% of old data and retries the operation
+- **Corrupted Data**: Corrupted keys are cleared and initialized with default values
 
-### ストレージエラー
+### Performance
 
-- **容量超過**: 自動的に古いデータの20%が削除され、操作が再試行されます
-- **破損データ**: 破損したキーがクリアされ、デフォルト値で初期化されます
+- When animation frame rate drops below 30fps, complexity is automatically reduced
 
-### パフォーマンス
-
-- アニメーションのフレームレートが30fps未満になると、自動的に複雑さが軽減されます
-
-## ライセンス
+## License
 
 MIT
