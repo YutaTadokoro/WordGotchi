@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Translate Requirements to Japanese",
+  "description": "Watches for changes to requirements.md and automatically translates the content into Japanese, saving it as requirements_jp.md",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "requirements.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Read the contents of requirements.md, translate all the text into Japanese while preserving the markdown formatting and structure, and save the translated version as requirements_jp.md in the same directory."
+  }
+}

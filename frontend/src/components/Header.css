@@ -1,0 +1,52 @@
+/* Header Component Styles */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--ether-purple);
+  border-bottom: 2px solid var(--soul-lavender);
+  padding: 12px 20px;
+  z-index: 100;
+}
+
+.header-title {
+  margin: 0;
+  color: var(--ghost-white);
+  font-size: 28px;
+  font-weight: 900;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, var(--ghost-white) 0%, var(--soul-lavender) 50%, #9d7bea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 15px rgba(183, 148, 246, 0.6));
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 15px;
+  }
+
+  .header-title {
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 12px;
+  }
+
+  .header-title {
+    font-size: 16px;
+    letter-spacing: 1.5px;
+  }
+}

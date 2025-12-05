@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Translate README to English",
+  "description": "Automatically translates the README.md file to English and saves it as README_EN.MD whenever the README is edited",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "README.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Translate the contents of README.md to English and save the translated version as README_EN.MD in the root directory. Preserve all markdown formatting, structure, and code blocks."
+  }
+}

@@ -1,0 +1,282 @@
+/* Popup Component Styles */
+/* Requirements: 3.5, 4.4, 10.4 */
+
+/* Overlay - full screen with fade transition */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 0, 20, 0.85); /* deep-purple with opacity */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Content container - centered with scale transition */
+.popup-content {
+  position: relative;
+  background: linear-gradient(135deg, var(--ether-purple) 0%, var(--deep-purple) 100%);
+  border: 2px solid var(--soul-lavender);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 0 40px rgba(183, 148, 246, 0.3);
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Close button */
+.popup-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--ghost-white);
+  font-size: 2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.popup-close:hover {
+  background-color: rgba(183, 148, 246, 0.2);
+  color: var(--soul-lavender);
+  transform: rotate(90deg);
+}
+
+/* Expression display */
+.expression-display {
+  color: var(--ghost-white);
+}
+
+.expression-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2rem;
+  color: var(--soul-lavender);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Art display */
+.art-container {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--soul-lavender);
+}
+
+.art-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.art-emotion {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--soul-lavender);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+/* Poetry display */
+.poetry-container {
+  background-color: rgba(26, 15, 46, 0.5); /* ether-purple with opacity */
+  border: 1px solid var(--soul-lavender);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.poetry-line {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--ghost-white);
+  margin: 0.5rem 0;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Action buttons */
+.expression-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.action-button {
+  background: linear-gradient(135deg, var(--soul-lavender) 0%, #8b5cf6 100%);
+  color: var(--deep-purple);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(183, 148, 246, 0.3);
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(183, 148, 246, 0.5);
+  background: linear-gradient(135deg, #c7a8ff 0%, #9d6fff 100%);
+}
+
+.action-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(183, 148, 246, 0.3);
+}
+
+/* Responsive design */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+  .popup-content {
+    max-width: 90vw;
+    padding: 1.5rem;
+    max-height: 85vh;
+  }
+
+  .expression-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .poetry-container {
+    padding: 1.5rem;
+    min-height: 120px;
+  }
+
+  .poetry-line {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .action-button {
+    font-size: 0.6rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .popup-close {
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+  .popup-content {
+    max-width: 95vw;
+    padding: 1rem;
+    max-height: 90vh;
+    border-radius: 12px;
+  }
+
+  .expression-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .poetry-container {
+    padding: 1rem;
+    min-height: 100px;
+  }
+
+  .poetry-line {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.3rem 0;
+  }
+
+  .art-emotion {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .expression-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .action-button {
+    font-size: 0.55rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+
+  .popup-close {
+    width: 32px;
+    height: 32px;
+    font-size: 1.3rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .popup-content {
+    max-height: 95vh;
+    padding: 1rem;
+  }
+
+  .expression-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .poetry-container {
+    padding: 1rem;
+    min-height: 80px;
+  }
+
+  .poetry-line {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 0.2rem 0;
+  }
+
+  .expression-actions {
+    margin-top: 1rem;
+  }
+}

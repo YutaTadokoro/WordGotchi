@@ -1,0 +1,118 @@
+:root {
+  /* WordGotchi Color Palette */
+  --deep-purple: #0a0014;
+  --ether-purple: #1a0f2e;
+  --soul-lavender: #b794f6;
+  --ghost-white: #e8d5ff;
+  
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: var(--ghost-white);
+  background-color: var(--deep-purple);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--soul-lavender);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--ghost-white);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--deep-purple);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: var(--ghost-white);
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--ether-purple);
+  color: var(--ghost-white);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+button:hover {
+  border-color: var(--soul-lavender);
+  background-color: var(--soul-lavender);
+  color: var(--deep-purple);
+}
+button:focus,
+button:focus-visible {
+  outline: 2px solid var(--soul-lavender);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  body {
+    min-width: 280px;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Touch-friendly tap targets */
+@media (hover: none) and (pointer: coarse) {
+  button, a, input, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improve text readability on mobile */
+@media (max-width: 768px) {
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
