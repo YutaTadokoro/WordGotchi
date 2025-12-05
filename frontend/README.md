@@ -40,13 +40,6 @@ Uses Claude API for emotion analysis via proxy server:
 VITE_CLAUDE_PROXY_TARGET=http://127.0.0.1:8000
 ```
 
-**Proxy Server Responsibilities:**
-- Claude API key management
-- Adding authentication headers
-- Building API endpoints
-
-**Note**: Claude API keys are managed on the proxy server side. Do not include API keys directly in the frontend.
-
 #### Gemini API Configuration
 
 Uses Google Gemini Imagen API for art generation via proxy server:
